@@ -12,17 +12,17 @@ import javax.persistence.ManyToOne
 class Category(
 
     @Column
-    val title: String,
+    val title: String?,
 
     @Column(name = "completed_count", updatable = false)
-    val completedCount: Long,
+    val completedCount: Long?,
 
     @Column(name = "uncompleted_count", updatable = false)
-    val uncompletedCount: Long,
+    val uncompletedCount: Long?,
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    val user: User
+    val user: User?
 ) : BaseEntity<Long>() {
 
     override fun equals(other: Any?): Boolean {

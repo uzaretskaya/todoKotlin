@@ -25,7 +25,7 @@ class User(
     val username: String,
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    val activity: Activity,
+    val activity: Activity?,
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

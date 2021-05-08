@@ -12,5 +12,6 @@ open class SpringConfig: WebSecurityConfigurerAdapter() {
         http?.formLogin()?.disable()
         http?.httpBasic()?.disable()
         http?.requiresChannel()?.anyRequest()?.requiresSecure()
+        http?.csrf()?.disable()
     }
 }
