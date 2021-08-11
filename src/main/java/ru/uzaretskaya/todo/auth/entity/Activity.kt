@@ -14,17 +14,16 @@ import javax.validation.constraints.NotBlank
 @Entity
 @DynamicUpdate
 class Activity(
-
-    @Column
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    val activated: Boolean,
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private val user: User,
 
     @Column(updatable = false)
     val uuid: @NotBlank String,
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private val user: User
+    @Column
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    val activated: Boolean = false,
 
-) : BaseEntity<Long>()
+    ) : BaseEntity<Long>()

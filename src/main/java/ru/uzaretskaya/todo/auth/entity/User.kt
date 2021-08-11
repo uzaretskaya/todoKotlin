@@ -19,7 +19,7 @@ class User(
     val email: @Email String,
 
     @Column
-    val password: String,
+    var password: String,
 
     @Column
     val username: String,
@@ -33,9 +33,10 @@ class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
     )
-    val roles: Set<Role> = HashSet()
+    val roles: MutableSet<Role> = mutableSetOf()
 
 ) : BaseEntity<Long>() {
+
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
